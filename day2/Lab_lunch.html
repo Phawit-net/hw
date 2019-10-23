@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+</head>
+<body>
+    <h1 id = "number">0</h1>
+    <input type = "button" name = "plus" value="Plus" onclick = "handle(true)">
+    <input type = "button" name = "subtract" value="Subtract" onclick = "handle(false)">
+    
+    <script>
+        let num  = parseInt( document.getElementById("number").innerHTML)
+        function plus(){
+            num+=1;
+            document.getElementById("number").innerHTML = num;
+        }
+        function minus(){
+            num-= 1;
+            document.getElementById("number").innerHTML = num;
+        }
+
+        //let count =0,handle = op =>document.getElementById("number").innerHTML = op === true? count +=1:count-=1
+    </script>
+</body>
