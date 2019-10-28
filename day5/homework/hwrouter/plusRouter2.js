@@ -1,10 +1,10 @@
 var express = require('express')
 var router = express.Router()
 
-router.get('/' , function (req,res)
+router.get('/:a/:b' , function (req,res)
 {
-    var a = parseInt(req.query.a)
-    var b = parseInt(req.query.b)
+    var a = parseInt(req.params.a)
+    var b = parseInt(req.params.b)
     res.send(String(a+b))
 })
 
