@@ -5,10 +5,10 @@ router.get('/:num' , function (req,res)
 {
     var num = req.params.num
     if (num%2!=0){
-        res.sendStatus(400)
+        res.status(400).send('Bad Request')
     }
     else{
-        res.sendStatus(200)
+        res.status(200).send('the Success')
     }
     
 })

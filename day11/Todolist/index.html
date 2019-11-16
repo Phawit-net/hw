@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script>
+    console.log($)
+    
+  function add(){
+    var x=$("#message").val();
+    // console.log(x);
+    // axios.post('http://localhost:3000/todolist',x)
+    //   .then(res => console.log(res.x));
+  
+      axios({
+  method: 'post',
+  url: 'http://localhost:3000/todolist',
+  data: {
+    text:x
+  }
+  })
+    .then(function(response){
+      var postdata = response.data;
+      $("#to-do-list").append("<li class='list-group-item'>"+postdata+"</li>");
+    })
+  }
+  function get(){
+    axios({
+      method:"get",
+      url:'http://localhost:3000/todolist',
+    }
+    )
+    .then(function (response) {
+    var gettodo=response.data;
+    for (i of gettodo ){
+      //console.log(i)
+      $("#to-do-list").append("<li class='list-group-item'>"+i+"</li>");
+    }
+    
+  })};
+    get()
+  </script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">To do list</h5>
+          <ul class="list-group list-group-flush" id="to-do-list">
+         
+
+          </ul>
+
+
+
+
+        </div>
+        <div class="card-footer text-muted">
+            <div class="input-group flex-nowrap">
+          <input type="text" id="message" class="form-control">
+          <button type="button" class="btn btn-outline-primary" onclick="add()">add</button>
+        </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-sm-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Complete</h5>
+          <ul class="list-group list-group-flush">
+         
+
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
