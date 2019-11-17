@@ -1,22 +1,20 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  border:1px solid #cdd1d6;
+  border-radius: 4px;
+  display: grid;
 }
-
-.App-logo {
-  height: 40vmin;
+.Layout{
+  margin: 50px 550px;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.input{
+  border-width: 0px;
+  font-size: 20px;
 }
-
-.App-link {
-  color: #09d3ac;
-}
+input {
+  outline:none;
+ }
+ .InputCol{
+  display: grid;
+  grid-template-columns: 250px 130px;
+ }
