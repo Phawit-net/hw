@@ -1,7 +1,15 @@
 import React from 'react';
 
-class TodoItem extends React.Component {
+class Todoitem extends React.Component {
+    render(){
+        let {text} = this.props
+        return(
+            <div>
+                {text}
+            </div>
+        )
+    }
 
 }
 
-export default TodoItem;
+export default Todoitem;
