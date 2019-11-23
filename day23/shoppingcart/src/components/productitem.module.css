@@ -1,0 +1,17 @@
+.imgsize{
+    width:50%;
+    height: 50%;
+}
+.product_align{
+    text-align: center;
+    margin:10px;
+    display: grid;
+    grid-template-columns:auto;
+    border: 1px solid #8a8a8a;
+    border-radius: 5px;
+    padding: 10px;
+}
+.name_header{
+    font-weight: bold;
+    font-size: 15px;
+}
