@@ -22,16 +22,27 @@ class App extends React.Component {
       {categoryId : 3 , id :8 ,name :'ASUS ROG STRIX',price :30900 ,image:'https://images-na.ssl-images-amazon.com/images/I/81TKu9gu%2BqL._SL1500_.jpg'},
       {categoryId : 3 , id :9 ,name :'ACER SWIFT',price :24990,image:'https://www.jib.co.th/img_master/product/original/20191001092321_35381_287_1.jpg'}
     ],
-    cartItem :[]
+    cartItem :[],
+    productList:[]
   } 
+
+  handleCategory = id =>async()=> {
+    console.log(id)
+    // console.log(this.state.productItems.filter(x=>x.categoryId === id))
+    this.setState({
+      productList : this.state.productItems.filter(x=>x.categoryId === id)
+    })
+  }
 
   render(){
     return (
       <div className='container'>
         <div className = 'border'>
-        {this.state.productCategory.map(({name,id}) =>(
+        {this.state.productCategory.map(({name,id},idx) =>(
           <Category 
+            key={idx}
             name= {name}
+            onCategory ={this.handleCategory(id)}
           />
         ))} 
         </div>
@@ -39,8 +50,9 @@ class App extends React.Component {
         <div className = 'border'>
           <div className ='product'>Product</div>
           <div className= 'productitem'>
-            {this.state.productItems.map(({name,id,price,image}) =>(
+            {this.state.productList.map(({name,id,price,image},idx) =>(
               <ProductItem 
+                key={idx}
                 productName= {name}
                 price = {price}
                 image={image}

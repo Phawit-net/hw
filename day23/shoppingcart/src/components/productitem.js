@@ -3,7 +3,7 @@ import styles from './productitem.module.css'
 
 function ProductItem(props) {
   const {productName ,image,price} =props
-    console.log(image)
+    // console.log(props)
   return (
     <div>
         <div className={styles.product_align}>
