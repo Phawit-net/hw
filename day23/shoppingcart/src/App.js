@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Category from './components/category'
 import ProductItem from './components/productitem'
-
+import { Row } from 'antd';
 
 class App extends React.Component {
   state = {
@@ -25,6 +25,16 @@ class App extends React.Component {
     cartItem :[],
     productList:[]
   } 
+
+  componentDidMount(){
+    this.setState({
+      productList :[ 
+        {categoryId : 1 , id :1 ,name :'ULTRA LIGHT DOWN JACKET',price :1900, image : 'https://image.uniqlo.com/UQ/ST3/WesternCommon/imagesgoods/400711/item/goods_69_400711.jpg?width=2000'},
+        {categoryId : 1 , id :2 ,name :'EZY ANKLE PANTS',price :790,image:'https://de9luwq5d40h2.cloudfront.net/catalog/product/large_image/07_418713.jpg'},
+        {categoryId : 1 , id :3 ,name :'DRY STRETCH SWEAT PANTS',price :590 ,image:'https://d15udtvdbbfasl.cloudfront.net/catalog/product/large_image/08_164206.jpg'}
+      ]
+    })
+  }
 
   handleCategory = id =>async()=> {
     console.log(id)
