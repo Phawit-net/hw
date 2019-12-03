@@ -8,5 +8,5 @@ import App2 from './Login';
 import App3 from './Signup';
 
 
-ReactDOM.render(<App2 />, document.getElementById('root'));
+ReactDOM.render(<App3 />, document.getElementById('root'));
 
