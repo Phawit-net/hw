@@ -2,7 +2,7 @@
 import { ADD_NOTE, REMOVE_NOTE } from '../actions/actions'
 
 const initialState = {
-  notes: []
+  notes: [],
 }
 
 function rootReducer(state = initialState, action) {
@@ -14,7 +14,9 @@ function rootReducer(state = initialState, action) {
           {
             id: action.id,
             title: action.title,
-            content: action.content
+            content: action.content,
+            currentDate : action.currentDate,
+            tag : action.tag
           }
         ]
       }

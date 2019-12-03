@@ -9,12 +9,14 @@ export const REMOVE_NOTE = 'REMOVE_NOTE'
 // export const STATUS_ACTIVE = 'STATUS_ACTIVE'
 // export const STATUS_INACTIVE = 'STATUS_INACTIVE'
 
-export function addNote(title, content) {
+export function addNote(title, content, currentDate,tag) {
   return {
     id: new Date().getTime().toString(),
     type: ADD_NOTE,
     title: title,
     content: content,
+    currentDate:currentDate,
+    tag:tag
     // status: STATUS_ACTIVE  
   }
 }
