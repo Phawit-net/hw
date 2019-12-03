@@ -4,7 +4,7 @@ import { addNote } from '../redux/actions/actions';
 import store from '../redux/store/store'
 import moment from 'moment';
 
-import { Input, Typography, Button, Select, Row, Col, DatePicker } from 'antd';
+import { Input, Typography, Button, Select, Row, Col, DatePicker,Icon } from 'antd';
 const { Option } = Select;
 const { TextArea } = Input;
 const { Text } = Typography;
@@ -68,9 +68,10 @@ class NoteForm extends Component {
                         <Select 
                             onChange={(value)=> this.handleChange('tag',value)}
                             defaultValue="lucy"
-                            style ={{marginLeft:'10px',marginTop:'7px',marginBottom:'7px',boxShadow: '2px 2px 5px #adadad'}} >
-                            <Option value="jack">Jack</Option>
+                            style ={{width:'150px',marginLeft:'10px',marginTop:'7px',marginBottom:'7px',boxShadow: '2px 2px 5px #adadad'}} >
                             <Option value="lucy">Lucy</Option>
+                            <Option value="jack">Jack</Option>
+                            <Option value="project">Project</Option>
                         </Select>
                     </Col>   
                     <Text strong>Due Date</Text>
