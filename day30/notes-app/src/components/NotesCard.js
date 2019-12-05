@@ -36,7 +36,7 @@ class NotesCard extends Component {
                         {note.content} 
                     </p>
                     <div>
-                        {note.currentDate}
+                        {note.currentDate}&nbsp;&nbsp;
                         <Tag color="magenta">{note.tag}</Tag>
                     </div>
                 </Card>  

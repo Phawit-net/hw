@@ -20,14 +20,14 @@ class NotesList extends Component {
                             style={{ width: '100%',paddingTop:'5px',paddingBottom:'13px'}}
                             size='large'/>
                     </Row>
-                    <Row style={{backgroundColor:'#f9f9f9',padding:'10px 25px',height:'100vh'}} gutter={[0, 16]}>
+                    <Row style={{backgroundColor:'#f9f9f9',padding:'10px 25px'}} gutter={[0, 16]}>
                         <Col span ={24}>
                             <Button>Project</Button>
                         </Col>
                         <NotesCard/> 
                     </Row>   
                 </Col>
-            </>                                
+            </>                               
         )
     }
 }
