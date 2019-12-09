@@ -8,7 +8,7 @@ function App() {
       <div style={{display:'flex',justifyContent:'center',alignItems:'center' ,width:'100vw',height:'100vh'}}>
         <SearchBox/>
       </div>
-      <div style={{display:'flex',justifyContent:'center',alignItems:'center' ,backgroundColor:'red'}}>
+      <div style={{backgroundColor:'red'}}>
         <ImgCategory/>
       </div>
     </>

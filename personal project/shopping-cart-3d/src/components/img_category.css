@@ -1,6 +1,7 @@
 .ant-carousel .slick-list {
-  height: 543px;
+  height: 510px;
 }
+
 .ant-carousel .slick-slide {
     text-align: center;
     background: #364d79;
@@ -17,6 +18,17 @@
 }
 
 .imgCat{
-  height: 543px ;
-  width: 621px;
+  height: 300px ;
+  width: 492px;
+  background-color: green;
+}
+.imgCat2{
+  height: 300px ;
+  width: 480px;
+  background-color: gray;
+}
+.imgCat3{
+  height: 300px ;
+  width: 492px;
+  background-color: orange;
 }
