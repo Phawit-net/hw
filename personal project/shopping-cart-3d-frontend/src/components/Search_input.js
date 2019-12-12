@@ -5,8 +5,7 @@ export class SearchBox extends Component {
     render() {
         const { Search } = Input;
         return (
-          <Col span={12}>
-          {/* <div style={{width:'100vw',height:'100vh'}}> */}
+          <Col span={6} style={{display:'flex',justifyContent:'flex-end'}}>
             <Search
                 placeholder="input search text"
                 onSearch={value => console.log(value)}

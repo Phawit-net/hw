@@ -21,9 +21,9 @@ app.get('/boats',(req,res)=>{           //เข้าไปที่get อั�
 
 //add boat
 app.get('/addboat',(req,res)=>{         //เพิ่มค่าในdatabase
-    let query = `INSERT INTO boats(bid , bname , color) 
+    let sql = `INSERT INTO boats(bid , bname , color) 
     VALUES (${req.query.bid},\"${req.query.bname}\",\"${req.query.color}\")`  //${req.query.bid ,... คือเราต้องรับparameterที่ postman ?bid=108&bname=hello&color=Green }
-    db.query(query,(err,results) =>{   
+    db.query(sql,(err,results) =>{   
         if(err){
             console.log("something wrong")
         } else {
