@@ -1,0 +1,24 @@
+const express = require('express')
+const app = express()
+const cors = require('cors')
+
+const bodyParser = require('body-parser')
+const db = require('./models')
+
+const categoryService = require('./services/category')
+const subcategoryService = require('./services/sub_category')
+
+app.use(cors())
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
+
+db.sequelize.sync({ force: false }).then(() => {
+    categoryService(app, db)
+    subcategoryService(app, db)
+
+  app.listen(8080, () => {
+    console.log("Server is running on port 8080")
+  })
+})

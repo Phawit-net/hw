@@ -1,0 +1,20 @@
+module.exports = (app, db) => {
+    app.get('/subcategories', (req, res) => {
+      db.sub_category.findAll()
+        .then(result => {
+          res.status(200).json(result)
+        })
+    })
+
+    app.post('/subcategory' , (req,res)=>{
+      db.sub_category.create({
+          name : req.body.name,
+          category_id:req.body.category_id
+      }).then(result => {
+          res.status(200).json(result)
+        })
+        .catch(error => {
+          res.status(400).json({ message: error.message })
+        })
+  })
+}
