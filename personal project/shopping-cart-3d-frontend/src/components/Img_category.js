@@ -77,10 +77,10 @@ export class ImgCategory extends Component {
                                 <img style ={{width:492 ,height:480}} src ='https://drive.google.com/uc?id=1ss1pU9XSaPMXRlXpWMXqS5ogn3ejR_xM' alt="food_img1"/>
                             </div>
                             <div>
-                                <img style ={{width:492 ,height:480}} src= 'https://drive.google.com/uc?id=1YRsaZ6x6_n7Hu6Xu10k0rReOAuB71VKj'alt="food_img2"/>
+                                <img style ={{width:492 ,height:480}} src= 'https://drive.google.com/uc?id=1gbRXlS7njIVZTXjO-m94DrOa7cehSJ-G'alt="food_img2"/>
                             </div>
                             <div>
-                                <img style ={{width:492 ,height:480}} src= 'https://drive.google.com/uc?id=1oWqxkgrrJX-lC10IHC8nbCVnq7dpOdCS' alt="food_img3"/>
+                                <img style ={{width:492 ,height:480}} src= 'https://drive.google.com/uc?id=1RJ6q83RG11jkU3ob38P9nz6AzsU7CNZt' alt="food_img3"/>
                             </div>
                             <div>
                                 <img style ={{width:492 ,height:480}} src= 'https://drive.google.com/uc?id=1wk0YSk1pEMhLxaGmmpt2hQynsqhgTgkD' alt="food_img4"/>
@@ -136,6 +136,19 @@ export class ImgCategory extends Component {
                             <div>
                                 <img style ={{width:492 ,height:480}} src= 'https://drive.google.com/uc?id=1W6KELmTxSwNVPrtvuGR-N205uyJksC5P' alt="weapon_img5"/>
                             </div>
+                        </Carousel>
+                    </Col>
+                    <Col span={8}>
+                        <Carousel autoplay className='catMenu'>
+                            <div>
+                                <img style ={{width:492 ,height:480}} src ='https://drive.google.com/uc?id=1VHE0Ji34jzZ-r3Jb0no28OcLvLiyJyoi' alt="electronic_img1"/>
+                            </div>
+                            <div>
+                                <img style ={{width:492 ,height:480}} src= 'https://drive.google.com/uc?id=1D_7bmdjypHE-65kZ8SgpG5HkD3MRGeeS'alt="electronic_img2"/>
+                            </div>
+                            <div>
+                                <img style ={{width:492 ,height:480}} src= 'https://drive.google.com/uc?id=19Mgxd8V4n2OXlwmKi3GUX6tmuiK0dsfW' alt="electronic_img3"/>
+                            </div>                            
                         </Carousel>
                     </Col>
                 </Row>

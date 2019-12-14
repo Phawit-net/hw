@@ -1,9 +1,6 @@
 module.exports = (app, db) => {
     app.get('/categories', (req, res) => {
       db.category.findAll({
-        order: [
-          ['id', 'DESC'],
-        ],
         include: [{
           model: db.sub_category
         }]
