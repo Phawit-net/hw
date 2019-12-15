@@ -5,5 +5,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     })
   
+    sub_category.associate = function (models) {
+      // associations can be defined here
+      sub_category.hasMany(models.product, { foreignKey: 'sub_category_id' })
+    };
+
     return sub_category
   }
