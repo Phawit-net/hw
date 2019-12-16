@@ -8,7 +8,7 @@ import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import modelObj from '../object/cover.obj';
 import matShade from '../object/cover.mtl';
 import jpgTexture from '../object/cover.jpg';
-import modelFbx from '../object/cover.fbx';
+// import modelFbx from '../object/cover.fbx';
 
 const OrbitControls = require('three-orbit-controls')(THREE);
 

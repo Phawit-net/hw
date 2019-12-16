@@ -7,7 +7,7 @@ export class SearchBox extends Component {
         return (
           <Col span={6} style={{display:'flex',justifyContent:'flex-end'}}>
             <Search
-                placeholder="input search text"
+                placeholder="Search 3d model"
                 onSearch={value => console.log(value)}
                 style={{ width: 200,height:60,fontSize:30}}/>
           </Col>
