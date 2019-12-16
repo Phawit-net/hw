@@ -11,7 +11,7 @@ export default class FirstPage extends Component {
             <>
                 <div>
                     {/* <HeaderBar/> */}
-                    <Row type='flex' justify="center" align="middle" style={{backgroundColor:'#b0ddf9'}}>
+                    <Row type='flex' justify="center" align="middle" >
                         <SearchBox/>
                         <CanvasView/>
                     </Row>
