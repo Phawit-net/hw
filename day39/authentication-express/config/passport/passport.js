@@ -6,8 +6,8 @@ const bcrypt = require('bcryptjs')
 const BCRYPT_SALT_ROUNDS = config.salt_length
 
 const passport = require('passport')
-const loaclStrategy = require('passport-local').Strategy
-const jwtStrategy = require('passport-jwt').Strategy
+const localStrategy = require('passport-local').Strategy
+const JWTStrategy = require('passport-jwt').Strategy
 const extractJwt = require('passport-jwt').ExtractJwt
 const db = require('../../models')
 
@@ -15,9 +15,9 @@ let jwtOption = {}
 jwtOption.secretOrKey = 'c0d3c4mp4'  //เป็นการกำหนด superSecret key ปกติจะไม่เก็บใน code
 
 // เป็นการกำหนด strategy ทำการ customize passport ว่าสามารถทำะไรได้บ้าง
-passport.use('register',new loaclStrategy(
+passport.use('register',new localStrategy(
     {
-        usernameField:'username',  //ใส่ username or email 
+        usernameField:'username',  //ใส่ username or email ไว้ใช้เป็นชื่อตัวแปรใน postman เปลี่ยนได้เช่น username12 
         passwordField:'password',
         session:false,  //ปกติเวลาใช้จะมีการเก็บ session แต่ในที่นี้ไม่ได้ใช้เลยเปลี่ยนเป็น false 
     },
@@ -44,3 +44,49 @@ passport.use('register',new loaclStrategy(
         })
     }
 ))
+
+passport.use('login',new localStrategy(
+    {
+        usernameField:'username',  //ป็นการตั้งชื่อ usernameOrEmail  usernameField เป็น config ที่เป็นค่าfix
+        passwordField:'password',
+        session:false,  
+    },
+    async (username,password,done) => { //ป็นการตั้งชื่อ usernameOrEmail
+        let user = await db.user.findOne({where : { username }})
+        // check username
+        if (user === null){  
+            return (null,false,{message : 'username or password is incorrect'})
+        } 
+        bcrypt.compare(password,user.password, function(err,response){
+            if(err){
+                console.error(err)
+                done(err)
+            }
+            if(!response){
+                return done(null,false,{message : 'username or password is incorrect'})
+            }
+            console.log(`user ${user.id} is found & authenticated`)
+            return done(null,user)
+        })
+    }
+))
+
+const opts ={
+    jwtFromRequest : extractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey : jwtOption.secretOrKey
+}
+
+passport.use('jwt',new JWTStrategy(opts,(jwt_payload,done)=>{ // 4 ขั้นตอน check verify jwt 
+    db.user.findOne({where: {id : jwt_payload.id}})    // check token ที่ส่งเข้ามาว่าใช้ได้ไหม ถ้าใช้ได้จะให้id ออกมาด้วย
+    .then(user =>{
+        if(user){
+            console.log('user found')
+            done(null,user)
+        } else {
+            console.log('user is not found')
+            done(null,false)
+        }
+    })
+}))
+
+module.exports = jwtOption

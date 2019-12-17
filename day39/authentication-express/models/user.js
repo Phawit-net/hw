@@ -13,5 +13,9 @@ module.exports = (sequelize,DataType)=>{
             type : DataType.ENUM("admin","user")
         }
     })
+    user.associate =(models) =>{
+        user.hasMany(models.post,{foreignKey : 'user_id'})
+    }
+
     return user 
 }
