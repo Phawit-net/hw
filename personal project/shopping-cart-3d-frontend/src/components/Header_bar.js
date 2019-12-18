@@ -9,7 +9,7 @@ export default class HeaderBar extends Component {
         return (
             <Row >
                 <Col span={12} style={{backgroundColor:'#23272c'}}>
-                    <div style={{display: 'flex',padding:14 , color:"#fff"}}>
+                    <div style={{display: 'flex',padding:14 , color:"#fff" ,fontSize :20}}>
                         LOGO
                     </div>
                     
@@ -20,11 +20,13 @@ export default class HeaderBar extends Component {
                     </Menu> */}
                 </Col>
                 <Col span={12} style={{backgroundColor:'green'}}>
-                    <div style={{display: 'flex',padding:14 , color:"#fff" ,justifyContent:'flex-end'}}>
+                    <div style={{display: 'flex',padding:14 , color:"#fff" ,justifyContent:'flex-end' , fontSize :20 }}>
                         <Popover placement="bottom" title={<Login_card/>} content='Forgot Password?' trigger="click">
-                            LOGIN
+                            <span style={{cursor :'pointer'}}>Login</span>
                         </Popover>
-                        <span> or </span>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style={{cursor :'default'}}> or </span>
+                        &nbsp;&nbsp;&nbsp;
                         Create Account
                     </div>
                     {/* <Menu mode="horizontal" style={{backgroundColor:'#23272c',display: 'flex', justifyContent:'flex-end'}}>
