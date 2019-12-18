@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import './Product_card.css';
+import './ProductCard.css';
 import { Card, Row, Col } from 'antd';
 const { Meta } = Card;
 
-export default class Product_card extends Component {
+export default class ProductCard extends Component {
     render() {
         return (
             <Row>

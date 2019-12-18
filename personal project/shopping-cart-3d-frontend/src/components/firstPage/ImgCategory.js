@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Carousel ,Row,Col} from 'antd';
-import './Img_category.css';
+import './ImgCategory.css';
 
 export class ImgCategory extends Component {
 

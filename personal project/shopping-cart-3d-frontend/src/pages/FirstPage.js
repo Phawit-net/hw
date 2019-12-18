@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Row } from 'antd';
-import SearchBox from '../components/Search_input';
-import ImgCategory from '../components/Img_category';
-import CanvasView from '../components/Canvas_view';
+import SearchBox from '../components/SearchBox';
+import ImgCategory from '../components/firstPage/ImgCategory';
+import CanvasView from '../components/firstPage/CanvasView';
 
 export default class FirstPage extends Component {
     render() {

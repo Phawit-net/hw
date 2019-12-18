@@ -17,3 +17,7 @@ img{
     color: green !important;  
     border-bottom: 2px solid green !important;
 }
+
+.ant-menu-horizontal {
+    border-bottom: 0px !important;
+}

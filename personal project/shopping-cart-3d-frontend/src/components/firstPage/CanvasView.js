@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import './Canvas_view.css'
+import './CanvasView.css'
 import * as THREE from "three";
 import { Col } from 'antd';
 import { MTLLoader } from 'three/examples/jsm/loaders/MTLLoader.js';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader.js';
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
-import modelObj from '../object/cover.obj';
-import matShade from '../object/cover.mtl';
-import jpgTexture from '../object/cover.jpg';
+import modelObj from '../../object/cover.obj';
+import matShade from '../../object/cover.mtl';
+import jpgTexture from '../../object/cover.jpg';
 // import modelFbx from '../object/cover.fbx';
 
 const OrbitControls = require('three-orbit-controls')(THREE);
