@@ -10,22 +10,29 @@ import ChangePassword from './pages/ChangePassword';
 
 const { Header, Content } = Layout;
 
-const menu = (
-  <Menu>
-    <Menu.Item>
-      <a href="/changepassword">
-        เปลี่ยนรหัสผ่าน
-      </a>
-    </Menu.Item>
-    <Menu.Item>
-      <a href="#">
-        ออกจากระบบ
-      </a>
-    </Menu.Item>
-  </Menu>
-);
+class App extends React.Component {
 
-function App() {
+handlelogout = () =>{
+  localStorage.removeItem("ACCESS_TOKEN")
+}
+
+  render(){
+
+    const menu = (
+      <Menu>
+        <Menu.Item>
+          <a href="/changepassword">
+            เปลี่ยนรหัสผ่าน
+          </a>
+        </Menu.Item>
+        <Menu.Item>
+          <a onClick= {()=>{this.handlelogout()}}>
+            ออกจากระบบ
+          </a>
+        </Menu.Item>
+      </Menu>
+    );
+    
   return (
     <Layout>
       <Header style={{ height: '5vh', lineHeight: '0' }} >
@@ -55,8 +62,9 @@ function App() {
       </Header>
       <Content style={{ height: '95vh' }}>
         <Switch>
-          <Route exact path="/home" component={Home} />
-          <Route exact path="/login" component={Login} />
+          {localStorage.getItem("ACCESS_TOKEN")?<Route exact path="/home" component={Home} /> : null}  
+          {/* {user.role === "Admin" ? } */}
+          {!localStorage.getItem("ACCESS_TOKEN") ? <Route exact path="/login" component={Login} /> :null}
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/changepassword" component={ChangePassword} />
           <Redirect to="/login" />
@@ -65,5 +73,5 @@ function App() {
     </Layout>
   );
 }
-
+}
 export default App;
