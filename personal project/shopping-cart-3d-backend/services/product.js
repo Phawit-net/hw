@@ -1,9 +1,6 @@
 module.exports = (app, db) => {
     app.get('/products', (req, res) => {
       db.product.findAll({
-        include: [{
-          model: db.sub_category
-        }]
       })
         .then(result => {
           res.status(200).json(result)

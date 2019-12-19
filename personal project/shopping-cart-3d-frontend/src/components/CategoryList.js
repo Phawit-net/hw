@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { Menu, Row, Col } from "antd";
 import "./CategoryList.css";
-import Category from "./Category";
-import Subcategory from "./Subcategory";
 
 export default class CategoryList extends Component {
   renderCategoryList() {
     return this.props.categoryList.map(cat => (
-      <Menu.Item key={cat.name} style={{ width: 90 }}>
+      <Menu.Item key={cat.id} style={{ width: 90 }}>
         <Col style={{ display: "flex", justifyContent: "center" }}>
           <img src={cat.icon} alt={cat.name} style={{ paddingTop: "5px" }} />
         </Col>
@@ -17,9 +15,9 @@ export default class CategoryList extends Component {
       </Menu.Item>
     ));
   }
-  renderSubCategoryList() {
+  renderSubCategoryList(catId) {
     return this.props.subCategoryList
-      .filter(filter => filter.category_id == 1)
+      .filter(filter => filter.category_id == catId)
       .map(subCat => (
         <Menu.Item key={subCat.name} style={{ width: 90 }}>
           <Col style={{ display: "flex", justifyContent: "center" }}>
@@ -30,15 +28,15 @@ export default class CategoryList extends Component {
   }
 
   render() {
-    const catId = this.props.selectedId
+    const { onClick, selectedId } = this.props
     return (
       <Row>
         <Menu
-          onClick = {(e) => this.props.handleCategoriesIdFunc(e.key)}
+          selectedKeys={[(selectedId === null) ? null : selectedId.toString()]}
+          onClick={onClick}
           mode="horizontal"
           style={{
             height: 100,
-            boxShadow: "0px 14px 29px -5px rgba(0,0,0,0.75)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -51,17 +49,14 @@ export default class CategoryList extends Component {
           mode="horizontal"
           style={{
             height: 50,
-            boxShadow: "0px 14px 29px -5px rgba(0,0,0,0.75)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "#23272c",
-            position: "relative",
-            zIndex: -1,
             color: "#fff"
           }}
         >
-          {this.renderSubCategoryList()}
+          {this.renderSubCategoryList(selectedId)}
         </Menu>
       </Row>
     );

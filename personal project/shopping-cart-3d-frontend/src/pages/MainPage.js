@@ -8,7 +8,9 @@ export default class MainPage extends Component {
     super(props);
     this.state = {
       categoryList: [],
-      subCategoryList :[],
+      subCategoryList: [],
+      productList:[],
+      selectedCategoriesId: null,
     };
   }
 
@@ -17,7 +19,7 @@ export default class MainPage extends Component {
       .then(result => {
         this.setState({
           categoryList: result.data,
-          selectedCategoriesId :result.data[0].id
+          selectedCategoriesId: result.data[0].id
         });
       })
 
@@ -27,20 +29,41 @@ export default class MainPage extends Component {
           subCategoryList: result.data
         });
       })
+
+      Axios.get("http://localhost:8080/products")
+      .then(result => {
+        this.setState({
+          productList: result.data
+        });
+      })      
   }
 
-  handleCategoriesId(x){
-    console.log(x)
+  handleClick = e => {
+    this.setState({
+      selectedCategoriesId: e.key
+    })
+    console.log(e.key)
+  }
+
+  filterProducts(){
+    const id = this.state.selectedCategoriesId;
+    if(id == null){
+      return []
+    } else {
+      return this.state.productList.filter(product => product.sub_category_id == id)
+    }
   }
 
   render() {
     return (
       <div>
-        <CategoryList 
-            categoryList = {this.state.categoryList}
-            subCategoryList = {this.state.subCategoryList}
-            handleCategoriesIdFunc = {this.handleCategoriesId}/>
-        <ProductCard />
+        <CategoryList
+          categoryList={this.state.categoryList}
+          subCategoryList={this.state.subCategoryList}
+          onClick={this.handleClick}
+          selectedId={this.state.selectedCategoriesId} />
+        <ProductCard
+          productList = {this.filterProducts()}/>
       </div>
     );
   }
