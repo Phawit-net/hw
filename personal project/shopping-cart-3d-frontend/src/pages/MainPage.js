@@ -31,6 +31,11 @@ export default class MainPage extends Component {
       })
 
       Axios.get("http://localhost:8080/products")
+      // ,{
+      //   params: {
+      //     cat_id: this.state.selectedCategoriesId
+      //     }
+      //   })
       .then(result => {
         this.setState({
           productList: result.data
@@ -64,6 +69,7 @@ export default class MainPage extends Component {
           selectedId={this.state.selectedCategoriesId} />
         <ProductCard
           productList = {this.filterProducts()}/>
+          {/* productList = {this.state.productList}/> */}
       </div>
     );
   }
