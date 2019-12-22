@@ -1,10 +1,9 @@
 module.exports = (app, db) => {
-    app.get('/products', (req, res) => {
-      // let param = req.query.cat_id
+    app.get('/products/:id', (req, res) => {
       db.product.findAll({
-        // where :{
-        //   sub_category_id: 2
-        // }
+        where :{
+          sub_category_id: req.params.id
+        }
       })
         .then(result => {
           res.status(200).json(result)

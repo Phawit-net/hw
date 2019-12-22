@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom'
 import { Redirect } from 'react-router'
 import { Layout, Col, Row, Avatar, Button, Dropdown, Menu } from 'antd';
-import logo from './images/logo.png'
 import Login from './pages/authentication/Login';
 import Signup from './pages/authentication/Signup';
 import Home from './pages/Home';
@@ -39,7 +38,7 @@ handlelogout = () =>{
         <Row style={{ height: '100%' }} type="flex" align="middle">
           <Col span={4} style={{ height: '100%' }} type="flex" align="end">
             <a href="/">
-              <img src={logo} alt="Logo Fakebook" style={{ height: '5vh' }} />
+              <img src='https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png' alt="Logo Fakebook" style={{ height: '5vh' }} />
             </a>
           </Col>
           <Col span={20}>

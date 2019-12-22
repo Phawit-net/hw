@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ProductCard from "../components/product/ProductCard";
-import CategoryList from "../components/CategoryList";
+import CategoryList from "../components/product/CategoryList";
 import Axios from "axios";
 
 export default class MainPage extends Component {
@@ -9,7 +9,7 @@ export default class MainPage extends Component {
     this.state = {
       categoryList: [],
       subCategoryList: [],
-      productList:[],
+      productList: [],
       selectedCategoriesId: null,
     };
   }
@@ -29,34 +29,19 @@ export default class MainPage extends Component {
           subCategoryList: result.data
         });
       })
-
-      Axios.get("http://localhost:8080/products")
-      // ,{
-      //   params: {
-      //     cat_id: this.state.selectedCategoriesId
-      //     }
-      //   })
-      .then(result => {
-        this.setState({
-          productList: result.data
-        });
-      })      
   }
 
   handleClick = e => {
     this.setState({
       selectedCategoriesId: e.key
+    }, () => {
+      Axios.get("http://localhost:8080/products" + `/${this.state.selectedCategoriesId}`)
+        .then(result => {
+          this.setState({
+            productList: result.data
+          });
+        })
     })
-    console.log(e.key)
-  }
-
-  filterProducts(){
-    const id = this.state.selectedCategoriesId;
-    if(id == null){
-      return []
-    } else {
-      return this.state.productList.filter(product => product.sub_category_id == id)
-    }
   }
 
   render() {
@@ -68,8 +53,7 @@ export default class MainPage extends Component {
           onClick={this.handleClick}
           selectedId={this.state.selectedCategoriesId} />
         <ProductCard
-          productList = {this.filterProducts()}/>
-          {/* productList = {this.state.productList}/> */}
+          productList={this.state.productList} />
       </div>
     );
   }

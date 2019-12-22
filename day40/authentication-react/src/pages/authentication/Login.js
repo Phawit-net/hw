@@ -1,6 +1,5 @@
 import React from 'react'
 import { Row, Col, Form, Icon, Input, Button } from 'antd';
-import logo from '../../images/logo.png'
 import Axios from '../../config/axios.setup'
 import {successLoginNotification,failLoginNotification} from '../../components/notification/notification'
 
@@ -37,7 +36,7 @@ export default class Login extends React.Component {
       <div>
         <Row type="flex" justify="center" align="middle" style={{ height: '100vh' }}>
           <Col md={8} sm={12} xs={24}>
-            <img src={logo} alt="Logo Fakebook" style={{ width: '100%', paddingLeft: '24px', paddingRight: '24px', maxWidth: '400px' }}></img>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png' alt="Logo Fakebook" style={{ width: '100%', paddingLeft: '24px', paddingRight: '24px', maxWidth: '400px' }}></img>
           </Col>
           <Col md={8} sm={12} xs={24}>
             <Form onSubmit={this.handleSubmit} className="login-form" style={{ maxWidth: '400px', width: '100%' }}>

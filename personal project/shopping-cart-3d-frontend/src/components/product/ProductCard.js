@@ -9,7 +9,7 @@ export default class ProductCard extends Component {
     return (
       <Row>
         {productList.map(product => (
-          <Col span={6}>
+          <Col span={6} key ={product.id}>
             <Card
               hoverable
               style={{ width: 300 }}
@@ -17,49 +17,9 @@ export default class ProductCard extends Component {
               <Meta title={product.name} />
               price : {product.price}
               www.instagram.com
-                    </Card>
+            </Card>
           </Col>
         ))}
-        {/* <Col span={6}>
-          <Card
-            hoverable
-            style={{ width: 300 }}
-            cover={<img alt="example" src="https://drive.google.com/uc?id=1JRzBkOSiz5f795mDdasGY63IEdGDnstl" />}>
-            <Meta title="Europe Street beat" />
-            Europe Street beat
-            www.instagram.com
-                    </Card>
-        </Col>
-        <Col span={6}>
-          <Card
-            hoverable
-            style={{ width: 300 }}
-            cover={<img alt="example" src="https://drive.google.com/uc?id=1JRzBkOSiz5f795mDdasGY63IEdGDnstl" />}>
-            <Meta title="Europe Street beat" />
-            Europe Street beat
-            www.instagram.com
-                    </Card>
-        </Col>
-        <Col span={6}>
-          <Card
-            hoverable
-            style={{ width: 300 }}
-            cover={<img alt="example" src="https://drive.google.com/uc?id=1JRzBkOSiz5f795mDdasGY63IEdGDnstl" />}>
-            <Meta title="Europe Street beat" />
-            Europe Street beat
-            www.instagram.com
-                    </Card>
-        </Col>
-        <Col span={6}>
-          <Card
-            hoverable
-            style={{ width: 300 }}
-            cover={<img alt="example" src="https://drive.google.com/uc?id=1JRzBkOSiz5f795mDdasGY63IEdGDnstl" />}>
-            <Meta title="Europe Street beat" />
-            Europe Street beat
-            www.instagram.com
-                    </Card>
-        </Col> */}
       </Row>
     )
   }

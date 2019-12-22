@@ -41,8 +41,7 @@ export default class CategoryList extends Component {
             justifyContent: "center",
             alignItems: "center",
             backgroundColor: "#555b68"
-          }}
-        >
+          }}>
           {this.renderCategoryList()}
         </Menu>
         <Menu
@@ -54,8 +53,7 @@ export default class CategoryList extends Component {
             alignItems: "center",
             backgroundColor: "#23272c",
             color: "#fff"
-          }}
-        >
+          }}>
           {this.renderSubCategoryList(selectedId)}
         </Menu>
       </Row>

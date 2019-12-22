@@ -3,6 +3,7 @@ import FirstPage from './pages/FirstPage';
 import { Route, Switch } from 'react-router-dom'
 import Header from './components/Header';
 import MainPage from './pages/MainPage';
+import AddPage from './pages/AddPage';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Switch>
         <Route exact path="/" component={FirstPage} />
         <Route exact path="/main" component={MainPage} />
+        <Route exact path="/add" component={AddPage} />
       </Switch>
     </>
   );
