@@ -35,7 +35,7 @@ export default class MainPage extends Component {
     this.setState({
       selectedCategoriesId: e.key
     }, () => {
-      Axios.get("http://localhost:8080/products" + `/${this.state.selectedCategoriesId}`)
+      Axios.get(`http://localhost:8080/products/${this.state.selectedCategoriesId}`)
         .then(result => {
           this.setState({
             productList: result.data
@@ -51,9 +51,9 @@ export default class MainPage extends Component {
           categoryList={this.state.categoryList}
           subCategoryList={this.state.subCategoryList}
           onClick={this.handleClick}
-          selectedId={this.state.selectedCategoriesId} />
+          selectedId={this.state.selectedCategoriesId}/>
         <ProductCard
-          productList={this.state.productList} />
+          productList={this.state.productList}/>
       </div>
     );
   }

@@ -3,7 +3,8 @@ module.exports = (app, db) => {
       db.product.findAll({
         where :{
           sub_category_id: req.params.id
-        }
+        },
+        attributes : ['name','price','image','id']
       })
         .then(result => {
           res.status(200).json(result)

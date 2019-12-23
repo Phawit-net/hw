@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Row, Col, Input, Form, Dropdown, Icon, Button, Select } from 'antd'
+import { Row, Col, Input, Form, Button, Select } from 'antd'
 import Axios from "axios";
 
 class AddPage extends Component {
@@ -9,33 +9,56 @@ class AddPage extends Component {
     this.state = {
       categoryList: [],
       subCategoryList: [],
-      productList: [],
       selectedCategoriesId: null,
+      selectedSubCategoriesId : null
     };
   }
+  componentDidMount() {
+    Axios.get("http://localhost:8080/categories")
+      .then(result => {
+        this.setState({
+          categoryList: result.data
+        });
+      })
 
-  handleChange(value) {
-    console.log(`selected ${value}`);
+    Axios.get("http://localhost:8080/subcategories")
+      .then(result => {
+        this.setState({
+          subCategoryList: result.data
+        });
+      })
   }
 
-  submitForm = (e) =>{
+  handleCategoryChange = (value) => {
+    this.setState({
+      selectedCategoriesId : value
+    })
+  }
+
+  handleSubCategoryChange = (value) => {
+    this.setState({
+      selectedSubCategoriesId : value
+    })
+  }
+
+  submitForm = (e) => {
     e.preventDefault();
-    this.props.form.validateFieldsAndScroll((err,value)=>{
-      if(!err){
-        Axios.post("http://localhost:8080/product",{
-          name : value.Name,
-          sub_category_id : 3,
-          price : value.Price,
-          description : value.Description,
-          image : value.Image,
-          published_date : '2008-11-11'
+    this.props.form.validateFieldsAndScroll((err, value) => {
+      if (!err) {
+        Axios.post("http://localhost:8080/product", {
+          name: value.Name,
+          sub_category_id: value.subCategories,
+          price: value.Price,
+          description: value.Description,
+          image: value.Image,
+          published_date: '2008-11-11'
         })
-        .then(result => {
-          console.log(result)
-        })
-        .catch(err =>{
-          console.error(err)
-        })
+          .then(result => {
+            console.log(result)
+          })
+          .catch(err => {
+            console.error(err)
+          })
         this.props.form.resetFields()
       }
     })
@@ -69,7 +92,7 @@ class AddPage extends Component {
                             message: "Please input product name"
                           }
                         ]
-                      })( <Input placeholder="Product name" />)}
+                      })(<Input placeholder="Product name" />)}
                     </Form.Item>
                   </Col>
                   <Col style={{ marginRight: 20 }}>
@@ -84,17 +107,13 @@ class AddPage extends Component {
                       })(
                         <Select
                           placeholder="Categories"
-                          onChange={this.handleChange}
+                          onChange={this.handleCategoryChange}
                           style={{ width: 130 }}>
-                          <Option value="Architectures">Architectures</Option>
-                          <Option value="Characters">Characters</Option>
-                          <Option value="Vehicles">Vehicles</Option>
-                          <Option value="Animals">Animals</Option>
-                          <Option value="Weapons">Weapons</Option>
-                          <Option value="Furnitures">Furnitures</Option>
-                          <Option value="Foods">Foods</Option>
-                          <Option value="Plants">Plants</Option>
-                          <Option value="Electronics">Electronics</Option>
+                          {this.state.categoryList.map(category => (
+                            <Option value={category.id} key={category.id}>
+                              {category.name}
+                            </Option>
+                          ))}
                         </Select>
                       )}
                     </Form.Item>
@@ -106,17 +125,11 @@ class AddPage extends Component {
                       })(
                         <Select
                           placeholder="Sub Categories"
-                          onChange={this.handleChange}
+                          onChange={this.handleSubCategoryChange}
                           style={{ width: 150 }}>
-                          <Option value="Architectures">Architectures</Option>
-                          <Option value="Characters">Characters</Option>
-                          <Option value="Vehicles">Vehicles</Option>
-                          <Option value="Animals">Animals</Option>
-                          <Option value="Weapons">Weapons</Option>
-                          <Option value="Furnitures">Furnitures</Option>
-                          <Option value="Foods">Foods</Option>
-                          <Option value="Plants">Plants</Option>
-                          <Option value="Electronics">Electronics</Option>
+                          {this.state.subCategoryList.filter(filter => filter.category_id === this.state.selectedCategoriesId).map(subCat =>(
+                            <Option value={subCat.id} key={subCat.id}>{subCat.name}</Option>
+                          ))}
                         </Select>
                       )}
                     </Form.Item>

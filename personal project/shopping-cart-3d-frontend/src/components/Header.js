@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu, Row, Col, Popover, Button, Modal } from 'antd';
+import { Row, Col, Popover, Button, Modal } from 'antd';
 import LoginCard from './LoginCard';
 
 export default class Header extends Component {
@@ -31,7 +31,7 @@ export default class Header extends Component {
         <Col span={12} style={{ backgroundColor: '#23272c' }}>
           <div style={{ display: 'flex', padding: 14, color: "#fff", fontSize: 20 }}>
             LOGO
-                    </div>
+          </div>
         </Col>
         <Col span={12} style={{ backgroundColor: '#23272c' }}>
           <div style={{ display: 'flex', padding: 14, color: "#fff", justifyContent: 'flex-end', fontSize: 20 }}>

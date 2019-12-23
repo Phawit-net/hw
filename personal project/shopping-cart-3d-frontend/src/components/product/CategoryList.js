@@ -32,7 +32,7 @@ export default class CategoryList extends Component {
     return (
       <Row>
         <Menu
-          selectedKeys={[(selectedId === null) ? null : selectedId.toString()]}
+          // selectedKeys={[(selectedId === null) ? null : selectedId.toString()]}
           onClick={onClick}
           mode="horizontal"
           style={{
