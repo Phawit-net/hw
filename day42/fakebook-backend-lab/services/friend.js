@@ -10,11 +10,11 @@ module.exports = (app, db) => {
       db.friend
         .create({
           status: "request",
-          request_to_id: parseInt(req.params.id),
+          request_to_id: req.params.id,
           request_from_id: req.user.id
         })
         .then(result => {
-          res.status(201).send(result);
+          res.status(201).send({ message :`Sends request to friend id : ${req.params.id}`});
         })
         .catch(err => {
           res.status(400).send({ message: err.message });
@@ -23,11 +23,25 @@ module.exports = (app, db) => {
   );
 
   app.get(
-    "/request-list",
+    "/request-list",  //คนที่ยิง request มาหาเรา
     passport.authenticate("jwt", { session: false }),
     async function(req, res) {
-      // Lab 2
-    }
+      const requestList = await db.friend.findAll({
+        where:{
+          request_to_id : req.user.id ,
+          status: "request"
+        },
+        attributes : [['request_from_id' , 'id']]
+      })
+      const requestListIds = requestList.map(request => request.id)
+      const requestUser = await db.user.findAll({
+        where:{
+          id:{[Op.in] :requestListIds}
+        },
+        attributes : ['id','name' ,'profile_img_url']
+      })
+      res.send(requestUser)
+    } 
   );
 
   app.get(
@@ -77,8 +91,21 @@ module.exports = (app, db) => {
   app.get(
     "/delete-friend/:id",
     passport.authenticate("jwt", { session: false }),
-    function(req, res) {
-      // Lab 5
+     async function(req, res) {
+      let targetFriend =  await db.friend.findOne({
+        where : {
+          [Op.or] : [
+            {request_from_id : req.user.id , request_to_id: req.params.id , status: 'friend'},
+            {request_from_id : req.params.id , request_to_id: req.user.id , status: 'friend'}
+          ]
+        }
+      })
+      if(!targetFriend){
+        res.status(404).send({message:`friend id: ${req.params.id} not found`})
+      } else {
+        targetFriend.destroy()
+        res.status(200).send({message:`friend id: ${req.params.id} has been deleted`})
+      }
     }
   );
 
@@ -86,7 +113,29 @@ module.exports = (app, db) => {
     "/friends-list",
     passport.authenticate("jwt", { session: false }),
     async function(req, res) {
-      // Lab 6
-    }
+      const requestFromIds = await db.friend.findAll({
+        where:{
+          request_to_id : req.user.id ,
+          status: "friend"
+        },
+        attributes : [['request_from_id' , 'id']]
+      })
+      const requestToIds = await db.friend.findAll({
+        where:{
+          request_from_id : req.user.id ,
+          status: "friend"
+        },
+        attributes : [['request_to_id' , 'id']]
+      })
+      const requestFromIdsArr = requestFromIds.map(request => request.id)
+      const requestToIdsArr = requestToIds.map(request => request.id)
+      const friendUser = await db.user.findAll({
+        where:{
+          id : {[Op.in]: requestFromIdsArr.concat(requestToIdsArr)} 
+        },
+        attributes : ['id','name' ,'profile_img_url']
+      })
+      res.status(200).send(friendUser)
+    } 
   );
 };

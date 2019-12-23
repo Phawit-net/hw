@@ -17,17 +17,16 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 require('./config/passport/passport')
 
-db.sequelize.sync({ force: false }).then(() => {
+db.sequelize.sync({ alter: false }).then(() => {
 
   userService(app, db);
   postService(app, db)
   friendService(app, db)
   commentService(app, db)
-
-  app.get('/protected', passport.authenticate('jwt', { session: false }),
-    function (req, res) {
-      res.send(req.user);
-    });
+  // app.get('/protected', passport.authenticate('jwt', { session: false }),
+  //   function (req, res) {
+  //     res.send(req.user);
+  //   });  ไม่ได้ใช้แล้ว 
 
   app.listen(8080, () => {
     console.log("Server is running on port 8080")
