@@ -29,6 +29,13 @@ export default class MainPage extends Component {
           subCategoryList: result.data
         });
       })
+
+      Axios.get("http://localhost:8080/products/1")
+      .then(result => {
+        this.setState({
+          productList: result.data
+        });
+      })  
   }
 
   handleClick = e => {

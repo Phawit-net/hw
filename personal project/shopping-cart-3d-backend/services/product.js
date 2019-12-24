@@ -17,6 +17,7 @@ module.exports = (app, db) => {
     app.post('/product' , (req,res)=>{
       db.product.create({
           name : req.body.name,
+          category_id : req.body.category_id,
           sub_category_id : req.body.sub_category_id,
           price : req.body.price,
           description : req.body.description,

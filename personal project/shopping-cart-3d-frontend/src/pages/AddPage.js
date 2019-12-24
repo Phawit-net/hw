@@ -47,6 +47,7 @@ class AddPage extends Component {
       if (!err) {
         Axios.post("http://localhost:8080/product", {
           name: value.Name,
+          category_id : value.Categories,
           sub_category_id: value.subCategories,
           price: value.Price,
           description: value.Description,
