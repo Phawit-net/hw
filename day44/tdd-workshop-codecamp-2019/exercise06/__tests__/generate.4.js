@@ -1,8 +1,15 @@
 import generateMinMaxAverage from "../generate"
 import * as utilsMock from "../utils"
 
-// TODO: jest.mock
-
+jest.mock("../utils" , ()=> {
+  return {
+    fetchNumberFromAPI : jest.fn()
+      .mockReturnValueOnce(1)
+      .mockReturnValueOnce(2)
+      .mockReturnValueOnce(3),
+  }
+});   // mock module รับชื่อmodule และ ให้returnอะไรออกมาคือ fetchNumberFromAPI และกำหนดค่าที่ return โดย .mockReturnValueOnce
+ 
 test('returns max min average values', () => {
   const expected = {min: 1, max: 3, avg: 2};
 

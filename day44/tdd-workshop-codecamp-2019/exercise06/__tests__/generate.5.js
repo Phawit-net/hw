@@ -2,6 +2,7 @@ import generateMinMaxAverage from "../generate"
 import * as utilsMock from "../utils"
 
 // TODO: using __mocks__ folder
+jest.mock('../utils')
 
 test('returns max min average values', () => {
   const expected = {min: 4, max: 6, avg: 5};
